@@ -75,8 +75,7 @@ func (p *ProjectApi) UpdateProject(ctx context.Context, name string, project *Pr
 	rel := &url.URL{Path: fmt.Sprintf("/v1/projects/%s", name)}
 	u := p.baseUrl.ResolveReference(rel)
 
-	body := &CreateProjectRequest{
-		Name: project.Name,
+	body := &UpdateProjectRequest{
 		Framework: project.Framework,
 	}
 	payload, err := json.Marshal(body)

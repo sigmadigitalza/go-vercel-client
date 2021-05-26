@@ -28,6 +28,10 @@ type CreateProjectRequest struct {
 	Framework   string `json:"framework"`
 }
 
+type UpdateProjectRequest struct {
+	Framework string `json:"framework"`
+}
+
 type CreateProjectEnvRequest struct {
 	Type   string   `json:"type"`
 	Key    string   `json:"key"`
