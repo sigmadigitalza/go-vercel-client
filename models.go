@@ -14,14 +14,21 @@ type GetProjectsResponse struct {
 }
 
 type Project struct {
-	Id          string    `json:"id"`
-	Name        string    `json:"name"`
-	Framework   string    `json:"framework"`
-	NodeVersion string    `json:"nodeVersion"`
-	AccountId   string    `json:"accountId"`
-	UpdatedAt   int64     `json:"updatedAt"`
-	CreatedAt   int64     `json:"createdAt"`
-	Alias       []*Domain `json:"alias"`
+	Id          string          `json:"id"`
+	Name        string          `json:"name"`
+	Framework   string          `json:"framework"`
+	NodeVersion string          `json:"nodeVersion"`
+	AccountId   string          `json:"accountId"`
+	UpdatedAt   int64           `json:"updatedAt"`
+	CreatedAt   int64           `json:"createdAt"`
+	Alias       []*Domain       `json:"alias"`
+	Link        *RepositoryLink `json:"link"`
+}
+
+type RepositoryLink struct {
+	Type string `json:"type"`
+	Repo string `json:"repo"`
+	Org  string `json:"org"`
 }
 
 type CreateProjectRequest struct {
