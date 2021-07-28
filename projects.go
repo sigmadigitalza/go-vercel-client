@@ -18,14 +18,28 @@ type ProjectApi struct {
 
 // The Project CRUD
 
-func (p *ProjectApi) CreateProject(ctx context.Context, name string, framework string) (*Project, error) {
+func (p *ProjectApi) CreateProject(ctx context.Context, name string, framework string, repositoryType string, repositoryName string) (*Project, error) {
 	rel := &url.URL{Path: "/v6/projects"}
 	u := p.baseUrl.ResolveReference(rel)
 
-	body := &CreateProjectRequest{
-		Name: name,
-		Framework: framework,
+	var body *CreateProjectRequest
+	if repositoryType != "" && repositoryName != "" {
+		body = &CreateProjectRequest{
+			Name:      name,
+			Framework: framework,
+			GitRepository: &GitRepositoryRequest{
+				Type: repositoryType,
+				Repo: repositoryName,
+			},
+		}
+	} else {
+		body = &CreateProjectRequest{
+			Name:      name,
+			Framework: framework,
+		}
 	}
+
+
 	payload, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
@@ -252,7 +266,7 @@ func (p *ProjectApi) AddDomain(ctx context.Context, id string, domain string, re
 	u := p.baseUrl.ResolveReference(rel)
 
 	body := &CreateDomainRequest{
-		Domain: domain,
+		Domain:   domain,
 		Redirect: redirect,
 	}
 
@@ -290,7 +304,7 @@ func (p *ProjectApi) UpdateDomain(ctx context.Context, id string, domain string,
 	u := p.baseUrl.ResolveReference(rel)
 
 	body := &CreateDomainRequest{
-		Domain: domain,
+		Domain:   domain,
 		Redirect: redirect,
 	}
 
