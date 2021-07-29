@@ -22,23 +22,17 @@ func (p *ProjectApi) CreateProject(ctx context.Context, name string, framework s
 	rel := &url.URL{Path: "/v6/projects"}
 	u := p.baseUrl.ResolveReference(rel)
 
-	var body *CreateProjectRequest
-	if repositoryType != "" && repositoryName != "" {
-		body = &CreateProjectRequest{
-			Name:      name,
-			Framework: framework,
-			GitRepository: &GitRepositoryRequest{
-				Type: repositoryType,
-				Repo: repositoryName,
-			},
-		}
-	} else {
-		body = &CreateProjectRequest{
-			Name:      name,
-			Framework: framework,
-		}
+	body := &CreateProjectRequest{
+		Name:      name,
+		Framework: framework,
 	}
 
+	if repositoryType != "" && repositoryName != "" {
+		body.GitRepository = &GitRepositoryRequest{
+			Type: repositoryType,
+			Repo: repositoryName,
+		}
+	}
 
 	payload, err := json.Marshal(body)
 	if err != nil {

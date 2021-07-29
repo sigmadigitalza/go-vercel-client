@@ -34,7 +34,7 @@ type RepositoryLink struct {
 type CreateProjectRequest struct {
 	Name          string                `json:"name"`
 	Framework     string                `json:"framework"`
-	GitRepository *GitRepositoryRequest `json:"gitRepository"`
+	GitRepository *GitRepositoryRequest `json:"gitRepository,omitempty"`
 }
 
 type GitRepositoryRequest struct {
