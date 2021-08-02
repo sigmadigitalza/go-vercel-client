@@ -18,7 +18,7 @@ type ProjectApi struct {
 
 // The Project CRUD
 
-func (p *ProjectApi) CreateProject(ctx context.Context, name string, framework string, repositoryType string, repositoryName string) (*Project, error) {
+func (p *ProjectApi) CreateProject(ctx context.Context, name string, framework string, repositoryType string, repositoryName string, rootDirectory string) (*Project, error) {
 	rel := &url.URL{Path: "/v6/projects"}
 	u := p.baseUrl.ResolveReference(rel)
 
@@ -32,6 +32,10 @@ func (p *ProjectApi) CreateProject(ctx context.Context, name string, framework s
 			Type: repositoryType,
 			Repo: repositoryName,
 		}
+	}
+
+	if rootDirectory != "" {
+		body.RootDirectory = rootDirectory
 	}
 
 	payload, err := json.Marshal(body)
