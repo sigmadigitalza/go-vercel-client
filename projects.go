@@ -88,7 +88,8 @@ func (p *ProjectApi) UpdateProject(ctx context.Context, name string, project *Pr
 	u := p.baseUrl.ResolveReference(rel)
 
 	body := &UpdateProjectRequest{
-		Framework: project.Framework,
+		Framework:     project.Framework,
+		RootDirectory: project.RootDirectory,
 	}
 	payload, err := json.Marshal(body)
 	if err != nil {

@@ -45,7 +45,8 @@ type GitRepositoryRequest struct {
 }
 
 type UpdateProjectRequest struct {
-	Framework string `json:"framework"`
+	Framework     string `json:"framework"`
+	RootDirectory string `json:"rootDirectory,omitempty"`
 }
 
 type CreateProjectEnvRequest struct {
