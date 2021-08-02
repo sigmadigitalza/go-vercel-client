@@ -25,7 +25,6 @@ func (p *ProjectApi) CreateProject(ctx context.Context, options *CreateProjectOp
 	body := &CreateProjectRequest{
 		Name:          options.Name,
 		Framework:     options.Framework,
-		RootDirectory: options.RootDirectory,
 	}
 
 	if options.RepositoryType != "" && options.RepositoryName != "" {
@@ -33,6 +32,10 @@ func (p *ProjectApi) CreateProject(ctx context.Context, options *CreateProjectOp
 			Type: options.RepositoryType,
 			Repo: options.RepositoryName,
 		}
+	}
+
+	if options.RootDirectory != "" {
+		body.RootDirectory = &options.RootDirectory
 	}
 
 	payload, err := json.Marshal(body)
@@ -86,7 +89,7 @@ func (p *ProjectApi) UpdateProject(ctx context.Context, name string, project *Pr
 
 	body := &UpdateProjectRequest{
 		Framework:     project.Framework,
-		RootDirectory: project.RootDirectory,
+		RootDirectory: &project.RootDirectory,
 	}
 	payload, err := json.Marshal(body)
 	if err != nil {

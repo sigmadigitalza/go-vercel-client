@@ -17,7 +17,7 @@ type Project struct {
 	Id            string          `json:"id"`
 	Name          string          `json:"name"`
 	Framework     string          `json:"framework"`
-	RootDirectory *string         `json:"rootDirectory"`
+	RootDirectory string         `json:"rootDirectory"`
 	NodeVersion   string          `json:"nodeVersion"`
 	AccountId     string          `json:"accountId"`
 	UpdatedAt     int64           `json:"updatedAt"`
@@ -37,7 +37,7 @@ type CreateProjectOptions struct {
 	Framework      string
 	RepositoryType string
 	RepositoryName string
-	RootDirectory  *string
+	RootDirectory  string
 }
 
 type CreateProjectRequest struct {
