@@ -17,7 +17,7 @@ type Project struct {
 	Id            string          `json:"id"`
 	Name          string          `json:"name"`
 	Framework     string          `json:"framework"`
-	RootDirectory string          `json:"rootDirectory"`
+	RootDirectory *string         `json:"rootDirectory"`
 	NodeVersion   string          `json:"nodeVersion"`
 	AccountId     string          `json:"accountId"`
 	UpdatedAt     int64           `json:"updatedAt"`
@@ -32,10 +32,18 @@ type RepositoryLink struct {
 	Org  string `json:"org"`
 }
 
+type CreateProjectOptions struct {
+	Name           string
+	Framework      string
+	RepositoryType string
+	RepositoryName string
+	RootDirectory  *string
+}
+
 type CreateProjectRequest struct {
 	Name          string                `json:"name"`
 	Framework     string                `json:"framework"`
-	RootDirectory string                `json:"rootDirectory,omitempty"`
+	RootDirectory *string               `json:"rootDirectory"`
 	GitRepository *GitRepositoryRequest `json:"gitRepository,omitempty"`
 }
 
@@ -45,8 +53,8 @@ type GitRepositoryRequest struct {
 }
 
 type UpdateProjectRequest struct {
-	Framework     string `json:"framework"`
-	RootDirectory string `json:"rootDirectory,omitempty"`
+	Framework     string  `json:"framework"`
+	RootDirectory *string `json:"rootDirectory"`
 }
 
 type CreateProjectEnvRequest struct {
