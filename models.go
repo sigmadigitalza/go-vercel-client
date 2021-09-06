@@ -51,8 +51,8 @@ type CreateProjectRequest struct {
 	Framework                   string                `json:"framework"`
 	RootDirectory               *string               `json:"rootDirectory"`
 	GitRepository               *GitRepositoryRequest `json:"gitRepository,omitempty"`
-	BuildCommand                string                `json:"buildCommand"`
-	OutputDirectory             string                `json:"outputDirectory"`
+	BuildCommand                string                `json:"buildCommand,omitempty"`
+	OutputDirectory             string                `json:"outputDirectory,omitempty"`
 	CommandForIgnoringBuildStep string                `json:"commandForIgnoringBuildStep,omitempty"`
 }
 
@@ -64,8 +64,8 @@ type GitRepositoryRequest struct {
 type UpdateProjectRequest struct {
 	Framework                   string  `json:"framework"`
 	RootDirectory               *string `json:"rootDirectory"`
-	BuildCommand                string  `json:"buildCommand"`
-	OutputDirectory             string  `json:"outputDirectory"`
+	BuildCommand                *string  `json:"buildCommand"`
+	OutputDirectory             *string  `json:"outputDirectory"`
 	CommandForIgnoringBuildStep string  `json:"commandForIgnoringBuildStep"`
 }
 

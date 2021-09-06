@@ -92,9 +92,17 @@ func (p *ProjectApi) UpdateProject(ctx context.Context, name string, project *Pr
 
 	body := &UpdateProjectRequest{
 		Framework:                   project.Framework,
-		BuildCommand:                project.BuildCommand,
-		OutputDirectory:             project.OutputDirectory,
+		BuildCommand:                nil,
+		OutputDirectory:             nil,
 		CommandForIgnoringBuildStep: project.CommandForIgnoringBuildStep,
+	}
+
+	if project.BuildCommand != "" {
+		body.BuildCommand = &project.BuildCommand
+	}
+
+	if project.OutputDirectory != "" {
+		body.OutputDirectory = &project.OutputDirectory
 	}
 
 	if project.RootDirectory != "" {
