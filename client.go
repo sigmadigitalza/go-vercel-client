@@ -16,7 +16,7 @@ func New() (*Client, error) {
 
 	baseUrl := &url.URL{
 		Scheme: "https",
-		Host: "api.vercel.com",
+		Host:   "api.vercel.com",
 	}
 
 	return &Client{

@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	MissingTokenError  = errors.New("missing Vercel API token")
+	MissingTokenError = errors.New("missing Vercel API token")
 )
 
 type transport struct {
