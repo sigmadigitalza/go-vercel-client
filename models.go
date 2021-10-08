@@ -48,7 +48,7 @@ type CreateProjectOptions struct {
 
 type CreateProjectRequest struct {
 	Name                        string                `json:"name"`
-	Framework                   string                `json:"framework"`
+	Framework                   *string                `json:"framework"`
 	RootDirectory               *string               `json:"rootDirectory"`
 	GitRepository               *GitRepositoryRequest `json:"gitRepository,omitempty"`
 	BuildCommand                string                `json:"buildCommand,omitempty"`
@@ -62,7 +62,7 @@ type GitRepositoryRequest struct {
 }
 
 type UpdateProjectRequest struct {
-	Framework                   string  `json:"framework"`
+	Framework                   *string  `json:"framework"`
 	RootDirectory               *string `json:"rootDirectory"`
 	BuildCommand                *string  `json:"buildCommand"`
 	OutputDirectory             *string  `json:"outputDirectory"`

@@ -24,10 +24,13 @@ func (p *ProjectApi) CreateProject(ctx context.Context, options *CreateProjectOp
 
 	body := &CreateProjectRequest{
 		Name:                        options.Name,
-		Framework:                   options.Framework,
 		BuildCommand:                options.BuildCommand,
 		OutputDirectory:             options.OutputDirectory,
 		CommandForIgnoringBuildStep: options.CommandForIgnoringBuildStep,
+	}
+
+	if options.Framework != "" {
+		body.Framework = &options.Framework
 	}
 
 	if options.RepositoryType != "" && options.RepositoryName != "" {
@@ -91,10 +94,13 @@ func (p *ProjectApi) UpdateProject(ctx context.Context, name string, project *Pr
 	u := p.baseUrl.ResolveReference(rel)
 
 	body := &UpdateProjectRequest{
-		Framework:                   project.Framework,
 		BuildCommand:                nil,
 		OutputDirectory:             nil,
 		CommandForIgnoringBuildStep: project.CommandForIgnoringBuildStep,
+	}
+
+	if project.Framework != "" {
+		body.Framework = &project.Framework
 	}
 
 	if project.BuildCommand != "" {
